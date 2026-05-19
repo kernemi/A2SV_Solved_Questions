@@ -1,8 +1,11 @@
 class Solution(object):
     def fib(self, n):
-        if n == 0:
-            return 0
-        elif n == 1:
-            return 1
-        else:
-            return self.fib(n-1) + self.fib(n-2)  
+        answer = defaultdict(int)
+        def solve(n):
+            if n == 0 or n == 1:
+                return n
+            if n not in answer:
+                answer[n] = solve(n-1) + solve(n-2)
+            return answer[n]
+
+        return solve(n)  
